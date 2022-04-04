@@ -65,6 +65,11 @@ namespace Login
             Debug.Log("PopUpMessage");
         }
 
+        //DataScriptに送る処理
+        //中学生の学年は７、８、９にして送信（ラベルは今まで通り）
+        //gradeが中学生（7〜9）の場合、datascriptにいれるschoolnumberにcをつける、小学生ならsをつける処理
+
+
         public void ConversionID(int class_num, string gender)
         {
             switch (class_num)
