@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using IowaGambling;
+using SendTest;
 
 namespace IowaGambling
 {
@@ -9,6 +10,7 @@ namespace IowaGambling
     {
         [SerializeField] GameObject Task;
         [SerializeField] GameObject End;
+        SendDataToServer sendDataToServer;
 
         // Update is called once per frame
         void Update()
@@ -17,8 +19,17 @@ namespace IowaGambling
             {
                 Task.SetActive(false);
                 End.SetActive(true);
+                SendDataIwoa();
                 PointPopUpManager.endBool = false;
             }
+        }
+
+        private void SendDataIwoa()
+        {
+            Debug.Log(DataScripts.gamedata);
+            DataScripts.pattern = 3;
+            //sendDataToServer.SendData(DataScripts.pattern.ToString(), DataScripts.gamedata);
+            DataScripts.gamedata = null;
         }
     }
 

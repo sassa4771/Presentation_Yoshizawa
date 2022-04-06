@@ -1485,8 +1485,6 @@ MonoBehaviour:
   - {fileID: 1758895569}
   - {fileID: 229465928}
   targetImageName: {fileID: 255310814}
-  reactionTime: 0
-  timerBool: 0
 --- !u!4 &1404294764
 Transform:
   m_ObjectHideFlags: 0

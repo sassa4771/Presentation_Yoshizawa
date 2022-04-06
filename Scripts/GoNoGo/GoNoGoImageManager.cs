@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using GoNoGo;
+using SendTest;
 
 namespace GoNoGo
 {
@@ -25,6 +26,8 @@ namespace GoNoGo
 
         private float reactionTime = 0f;    //data
         private bool timerBool = false;
+
+        SendDataToServer sendDataToServer;
 
         void Update()
         {
@@ -67,7 +70,7 @@ namespace GoNoGo
 
         public void OnClickImageShuffle()
         {
-            CreateGoNoGoArray(goImage, noGoImage, "Go", "NoGo");
+            CreateGoNoGoArray(goImage, noGoImage, "go", "nogo");
             Shuffle.ShuffleImageAndString(goNoGoImages, goNoGoNames);
         }
 
@@ -104,12 +107,22 @@ namespace GoNoGo
 
                 StartCoroutine(noReactionTimer);
                 yield return null;
+                DataScripts.gamedata += CreateXMLString.GoNoGoData(i + 1, goNoGoNames[i], isReaction, (reactionTime * 1000).ToString(), goNoGoImages.Length);
                 i++;
                 yield return null;
             }
             yield return new WaitForSeconds(1500 * 0.001f);
+            SendDataGoNoGo();
             endBool = true;
             yield break;
+        }
+
+        private void SendDataGoNoGo()
+        {
+            Debug.Log(DataScripts.gamedata);
+            DataScripts.pattern = 2;
+            //sendDataToServer.SendData(DataScripts.pattern.ToString(), DataScripts.gamedata);
+            DataScripts.gamedata = null;
         }
 
         private IEnumerator ReactionTimer()
@@ -120,7 +133,7 @@ namespace GoNoGo
 
             int rdmInterval = Random.Range(minInterval, maxInterval);
             yield return new WaitForSeconds(rdmInterval * 0.001f);
-            isReaction = "Reaction";
+            isReaction = "yes";
             Debug.Log(isReaction);
             StartCoroutine(randomDisplayImage);
         }
@@ -131,7 +144,7 @@ namespace GoNoGo
 
             int rdmInterval = Random.Range(minInterval, maxInterval);
             yield return new WaitForSeconds(rdmInterval * 0.001f);
-            isReaction = "No Reaction";
+            isReaction = "no";
             Debug.Log(isReaction);
             StartCoroutine(randomDisplayImage);
         }
@@ -165,7 +178,6 @@ namespace GoNoGo
         private void StopTimer()
         {
             Debug.Log("Reaction Time: " + reactionTime);
-            reactionTime = 0f;
             timerBool = false;
         }
     }

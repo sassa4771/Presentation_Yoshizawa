@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using SendTest;
 
 namespace FacialExpressionRecognition
 {
@@ -12,6 +13,7 @@ namespace FacialExpressionRecognition
         [SerializeField] private Image[] image;
         private Sprite[] facialImages = new Sprite[36];
         private string[] facialNames = new string[36];  //data
+        private string targetFacialName;    //data
         private float display = 200f;
         private float noReactionInterval = 4000f;
         private float firstInterval = 600f;
@@ -19,6 +21,7 @@ namespace FacialExpressionRecognition
         private int minmumTime = 400;
         public Text targetImageName;
         private int[] LR = new int[36]; //data
+        private string lr;
         private bool leftBool = false;
         private bool rightBool = false;
 
@@ -32,6 +35,8 @@ namespace FacialExpressionRecognition
         private IEnumerator coroutine;
         private IEnumerator noReactionTimer;
         private IEnumerator randomTimer;
+
+        SendDataToServer sendDataToServer;
 
         void Start()
         {
@@ -95,21 +100,25 @@ namespace FacialExpressionRecognition
                     CreateFacialArray(facialExpressionImageHolder.Happy, facialExpressionImageHolder.Disgust,
                         facialExpressionImageHolder.Fear, facialExpressionImageHolder.Anger,
                         "Happy", "Disgust", "Fear", "Anger");
+                    targetFacialName = "Happy";
                     break;
                 case "けんお":
                     CreateFacialArray(facialExpressionImageHolder.Disgust, facialExpressionImageHolder.Happy,
                         facialExpressionImageHolder.Fear, facialExpressionImageHolder.Anger,
                         "Disgust", "Happy", "Fear", "Anger");
+                    targetFacialName = "Disgust";
                     break;
                 case "おそれ":
                     CreateFacialArray(facialExpressionImageHolder.Fear, facialExpressionImageHolder.Disgust,
                         facialExpressionImageHolder.Happy, facialExpressionImageHolder.Anger,
                         "Fear", "Disgust", "Happy", "Anger");
+                    targetFacialName = "Fear";
                     break;
                 case "いかり":
                     CreateFacialArray(facialExpressionImageHolder.Anger, facialExpressionImageHolder.Disgust,
                         facialExpressionImageHolder.Fear, facialExpressionImageHolder.Happy,
                         "Anger", "Disgust", "Fear", "Happy");
+                    targetFacialName = "Anger";
                     break;
                 default:
                     break;
@@ -155,34 +164,59 @@ namespace FacialExpressionRecognition
 
         private IEnumerator RandomImage()
         {
-            int i = facialImages.Length - 1;
-            while (i >= 0)
+            int i = 0;
+            while (i < facialImages.Length)
             {
                 image[LR[i]].sprite = facialImages[i];
-                //Debug.Log("FacialName: " + facialNames[i]);
-                //Debug.Log("LR: " + LR[i]);
                 StartTimer();
+
                 yield return new WaitForSeconds(display * 0.001f);
 
                 image[LR[i]].sprite = null;
 
                 ResetNoReactionTimer();
                 ResetRandomTimer();
-
                 StartCoroutine(noReactionTimer);
+
                 yield return null;
 
+                LRToString(LR[i]);
                 isCorrect = Judge(facialNames[i]);
-                //Debug.Log("Judge: " + Judge(facialNames[i]));
+                //gamedataにそれぞれのデータを格納していく
+                DataScripts.gamedata += CreateXMLString.FacialExpressionRecognitionData(targetFacialName, i + 1, facialNames[i], lr, isCorrect, (reactionTime*1000f).ToString(), facialImages.Length);
 
                 ResetBools();
-
                 yield return null;
-                i--;
+                i++;
             }
+            SendDataFacial();
             EndBool = true;
 
             yield break;
+        }
+
+        private void LRToString(int i)
+        {
+            switch (i)
+            {
+                case 0:
+                    lr = "left";
+                    break;
+                case 1:
+                    lr = "right";
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        //データをサーバーに送るメソッド
+        private void SendDataFacial()
+        {
+            Debug.Log(DataScripts.gamedata);
+            DataScripts.pattern = 1;
+            //sendDataToServer.SendData(DataScripts.pattern.ToString(), DataScripts.gamedata);
+            DataScripts.gamedata = null;
         }
 
         private IEnumerator RandomTimer()
@@ -345,7 +379,6 @@ namespace FacialExpressionRecognition
         private void StopTimer()
         {
             Debug.Log("Reaction Time: " + reactionTime);
-            reactionTime = 0f;
             timerBool = false;
         }
     }

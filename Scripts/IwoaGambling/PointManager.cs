@@ -17,6 +17,7 @@ namespace IowaGambling
         public static int maxTrial = 40;
         private float reactionTime = 0f;    //data
         public static bool timerBool = false;
+        private bool startTimer = false;
 
         public Text PopUpText;
         public Text PointWindowText;
@@ -39,18 +40,20 @@ namespace IowaGambling
         public void OnClickStartButton()
         {
             Shuffle.ShuffleInt(deck);
-            timerBool = true;
+            StartTimer();
         }
 
         public void OnClickCard(int cardNumber)
         {
-            StopFixedUpdateTimer();
+            StopTimer();
             trial += 1;
             if(trial <= maxTrial)
             {
                 PointCalculation(trial, deck[cardNumber - 1]);
                 PopUpMessage(cardNumber);
                 PointWindow();
+                DataScripts.gamedata += CreateXMLString.IwoaGamblingData(trial, cardNumber.ToString(), rewardPoint.ToString(), lostPoint.ToString(), totalPoint.ToString(), (reactionTime * 1000).ToString(), maxTrial);
+                reactionTime = 0f;
             }
         }
 
@@ -82,10 +85,15 @@ namespace IowaGambling
             }
         }
 
-        private void StopFixedUpdateTimer()
+        private void StartTimer()
+        {
+            reactionTime = 0f;
+            timerBool = true;
+        }
+
+        private void StopTimer()
         {
             Debug.Log("Reaction Time: " + reactionTime);
-            reactionTime = 0f;
             timerBool = false;
         }
     }
