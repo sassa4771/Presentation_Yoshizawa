@@ -12,7 +12,8 @@ namespace FacialExpressionRecognition
         [SerializeField] private Image[] image;
         public GameObject Task;
         public GameObject Explain;
-        public GameObject End;
+        public GameObject Send;
+        public GameObject backButton;
         [SerializeField] private Text FacialExpressionText;
         private int ProgressCounter;
         private string[] FacialExpressionName = { "Happy", "Disgust", "Fear", "Anger" };
@@ -41,13 +42,16 @@ namespace FacialExpressionRecognition
                 ProgressCounter += 1;
                 if (ProgressCounter < FacialExpressionName.Length)
                 {
+                    backButton.SetActive(false);
                     Task.SetActive(false);
-                    Explain.SetActive(true);
+                    Send.SetActive(true);
+                    SendScreenManager.FacialStartSendScreen();
                 }
                 else
                 {
                     Task.SetActive(false);
-                    End.SetActive(true);
+                    Send.SetActive(true);
+                    SendScreenManager.StartSendScreen();
                 }
                 FacialExpressionImageManager.EndBool = false;
             }

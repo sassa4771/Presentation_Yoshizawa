@@ -10,7 +10,7 @@ namespace GoNoGo
         [SerializeField] GameObject StartText;
         [SerializeField] GameObject Task;
         [SerializeField] GameObject EndText;
-        [SerializeField] GameObject End;
+        [SerializeField] GameObject Send;
         private int startTextTime = 2000;
         private int minFirstInterval = 1000;
         private int maxFirstInterval = 1500;
@@ -58,7 +58,8 @@ namespace GoNoGo
             EndText.SetActive(true);
             yield return new WaitForSeconds(2000 * 0.001f);
             EndText.SetActive(false);
-            End.SetActive(true);
+            Send.SetActive(true);   //
+            SendScreenManager.StartSendScreen();    //
         }
     }
 }

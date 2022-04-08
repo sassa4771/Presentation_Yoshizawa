@@ -189,7 +189,7 @@ namespace FacialExpressionRecognition
                 yield return null;
                 i++;
             }
-            SendDataFacial();
+            DataScripts.pattern = 1;
             EndBool = true;
 
             yield break;
@@ -208,15 +208,6 @@ namespace FacialExpressionRecognition
                 default:
                     break;
             }
-        }
-
-        //データをサーバーに送るメソッド
-        private void SendDataFacial()
-        {
-            Debug.Log(DataScripts.gamedata);
-            DataScripts.pattern = 1;
-            //sendDataToServer.SendData(DataScripts.pattern.ToString(), DataScripts.gamedata);
-            DataScripts.gamedata = null;
         }
 
         private IEnumerator RandomTimer()

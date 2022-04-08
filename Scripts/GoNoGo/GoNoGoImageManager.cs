@@ -111,18 +111,10 @@ namespace GoNoGo
                 i++;
                 yield return null;
             }
+            DataScripts.pattern = 2;
             yield return new WaitForSeconds(1500 * 0.001f);
-            SendDataGoNoGo();
             endBool = true;
             yield break;
-        }
-
-        private void SendDataGoNoGo()
-        {
-            Debug.Log(DataScripts.gamedata);
-            DataScripts.pattern = 2;
-            //sendDataToServer.SendData(DataScripts.pattern.ToString(), DataScripts.gamedata);
-            DataScripts.gamedata = null;
         }
 
         private IEnumerator ReactionTimer()

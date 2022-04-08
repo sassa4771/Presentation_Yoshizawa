@@ -17,7 +17,6 @@ namespace IowaGambling
         public static int maxTrial = 40;
         private float reactionTime = 0f;    //data
         public static bool timerBool = false;
-        private bool startTimer = false;
 
         public Text PopUpText;
         public Text PointWindowText;

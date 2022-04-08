@@ -9,7 +9,7 @@ namespace IowaGambling
     public class IowaProgressManager : MonoBehaviour
     {
         [SerializeField] GameObject Task;
-        [SerializeField] GameObject End;
+        [SerializeField] GameObject Send;
         SendDataToServer sendDataToServer;
 
         // Update is called once per frame
@@ -18,18 +18,11 @@ namespace IowaGambling
             if (PointPopUpManager.endBool)
             {
                 Task.SetActive(false);
-                End.SetActive(true);
-                SendDataIwoa();
+                Send.SetActive(true);
+                DataScripts.pattern = 3;
+                SendScreenManager.StartSendScreen();    //
                 PointPopUpManager.endBool = false;
             }
-        }
-
-        private void SendDataIwoa()
-        {
-            Debug.Log(DataScripts.gamedata);
-            DataScripts.pattern = 3;
-            //sendDataToServer.SendData(DataScripts.pattern.ToString(), DataScripts.gamedata);
-            DataScripts.gamedata = null;
         }
     }
 
