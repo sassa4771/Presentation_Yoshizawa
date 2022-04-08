@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using SendTest;
 
 namespace Login
 {
@@ -13,15 +14,17 @@ namespace Login
         //public Text ID_text;
 
         private int school_num;
+        private string school_str;
         private int grade_num;
         private int class_num;
         private int number_num;
+        private int gender_num;
         private int age_num;
-
+        private int popup_grade_num;
         private string class_str = " ";
         private string gender_str = " ";
-        private string gender_str_no_furigana = " ";
 
+        SendDataToServer sendDataToServer;
 
         public void OnClickGetID()
         {
@@ -42,22 +45,23 @@ namespace Login
             Debug.Log("Number: " + number_num);
 
             string gender_label = toggleGroup[4].ActiveToggles().First().GetComponentsInChildren<Text>().First(t => t.name == "Label").text;
+            gender_num = int.Parse(gender_label);
             Debug.Log("Gender: " + gender_label);
 
             string age_label = toggleGroup[5].ActiveToggles().First().GetComponentsInChildren<Text>().First(t => t.name == "Label").text;
             age_num = int.Parse(age_label);
             Debug.Log("Age: " + age_num);
 
-            PopUpMessage(school_num, grade_num, class_num, number_num, gender_label, age_num);
-            //RecordID(school_num, grade_num, class_num, number_num, gender_label, age_num);
+            PopUpMessage(school_num, grade_num, class_num, number_num, gender_num, age_num);
         }
 
-        public void PopUpMessage(int school_num, int grade_num, int class_num, int number_num, string gender, int age_num)
+        public void PopUpMessage(int school_num, int grade_num, int class_num, int number_num, int gender, int age_num)
         {
-            ConversionID(class_num, gender);
+            
+            ConversionID(grade_num, class_num, gender);
             popUpMessage.text = "確認（かくにん）" + "\n" + "\n" +
-                "学校番号（がっこうばんごう）: " + school_num + "\n" +
-                "学年（がくねん）: " + grade_num + "\n" +
+                "学校番号（がっこうばんごう）: " + school_str + "\n" +
+                "学年（がくねん）: " + popup_grade_num + "\n" +
                 "学級（がっきゅう）: " + class_num + class_str + "\n" +
                 "番号（ばんごう）: " + number_num + "\n" +
                 "性別（せいべつ）: " + gender_str + "\n" +
@@ -65,8 +69,32 @@ namespace Login
             Debug.Log("PopUpMessage");
         }
 
-        public void ConversionID(int class_num, string gender)
+        public void SendID()
         {
+            DataScripts.SchoolNumber = school_str;
+            DataScripts.SchoolGrade = grade_num;
+            DataScripts.SchoolClass = class_num;
+            DataScripts.PersonalNumber = number_num;
+            DataScripts.StudentGender = gender_num;
+            DataScripts.StudentAge = age_num;
+
+            sendDataToServer = new SendDataToServer(DataScripts.SchoolNumber, DataScripts.SchoolGrade.ToString(), DataScripts.SchoolClass.ToString(), DataScripts.PersonalNumber.ToString(), DataScripts.StudentGender.ToString(), DataScripts.StudentAge.ToString());
+        }
+
+        public void ConversionID(int grade, int class_num, int gender)
+        {
+            if (grade <= 6)
+            {
+                school_str = "s" + school_num.ToString();
+                popup_grade_num = grade_num;
+            }
+            else
+            {
+                school_str = "c" + school_num.ToString();
+                popup_grade_num = grade_num - 6;
+            }
+
+
             switch (class_num)
             {
                 case 1:
@@ -103,23 +131,18 @@ namespace Login
                     break;
             }
 
-            if (gender == "Men")
+            if (gender == 0)
             {
                 gender_str = "男（おとこ）";
-                gender_str_no_furigana = "男";
             }
-            else if (gender == "Women")
+            else if (gender == 1)
             {
                 gender_str = "女（おんな）";
-                gender_str_no_furigana = "女";
             }
-        }
-
-        public void RecordID(int school_num, int grade_num, int class_num, int number_num, string gender, int age_num)
-        {
-            ConversionID(class_num, gender);
-            //ID_text.text = "学校番号: " + school_num + "  " + grade_num + "年" + class_num + class_str + "組" + number_num + "番 " + gender_str_no_furigana + " " + age_num + "歳";
-            Debug.Log("RecordID");
+            else
+            {
+                gender_str = null;
+            }
         }
     }
 }
