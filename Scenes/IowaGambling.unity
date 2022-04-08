@@ -674,6 +674,11 @@ PrefabInstance:
       propertyPath: End
       value: 
       objectReference: {fileID: 281258287}
+    - target: {fileID: 6283069131841992258, guid: 1748ceca86b8941059e9be0163a6d7d7,
+        type: 3}
+      propertyPath: m_Text
+      value: "\u30A2\u30A4\u30AA\u30EF\u30AE\u30E3\u30F3\u30D6\u30EA\u30F3\u30B0\u8AB2\u984C(\u304B\u3060\u3044)"
+      objectReference: {fileID: 0}
     - target: {fileID: 7252542278844191722, guid: 1748ceca86b8941059e9be0163a6d7d7,
         type: 3}
       propertyPath: m_Name

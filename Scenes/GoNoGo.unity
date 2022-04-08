@@ -1930,6 +1930,16 @@ PrefabInstance:
       propertyPath: End
       value: 
       objectReference: {fileID: 2116838328}
+    - target: {fileID: 6283069131841992258, guid: 1748ceca86b8941059e9be0163a6d7d7,
+        type: 3}
+      propertyPath: m_Text
+      value: "Go/NoGo\u8AB2\u984C(\u304B\u3060\u3044)"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6283069131841992258, guid: 1748ceca86b8941059e9be0163a6d7d7,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 120
+      objectReference: {fileID: 0}
     - target: {fileID: 7252542278844191722, guid: 1748ceca86b8941059e9be0163a6d7d7,
         type: 3}
       propertyPath: m_Name
