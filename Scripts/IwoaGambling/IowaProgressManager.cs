@@ -20,6 +20,7 @@ namespace IowaGambling
                 Task.SetActive(false);
                 Send.SetActive(true);
                 DataScripts.pattern = 3;
+                Debug.Log(DataScripts.gamedata);
                 SendScreenManager.StartSendScreen();    //
                 PointPopUpManager.endBool = false;
             }

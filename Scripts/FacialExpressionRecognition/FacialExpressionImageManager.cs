@@ -183,7 +183,7 @@ namespace FacialExpressionRecognition
                 LRToString(LR[i]);
                 isCorrect = Judge(facialNames[i]);
                 //gamedataにそれぞれのデータを格納していく
-                DataScripts.gamedata += CreateXMLString.FacialExpressionRecognitionData(targetFacialName, i + 1, facialNames[i], lr, isCorrect, (reactionTime*1000f).ToString(), facialImages.Length);
+                DataScripts.gamedata += CreateXMLString.FacialExpressionRecognitionData(targetFacialName, i + 1, facialNames[i], lr, isCorrect, (reactionTime*1000f).ToString("f0"), facialImages.Length);
 
                 ResetBools();
                 yield return null;

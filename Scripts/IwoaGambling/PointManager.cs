@@ -51,7 +51,7 @@ namespace IowaGambling
                 PointCalculation(trial, deck[cardNumber - 1]);
                 PopUpMessage(cardNumber);
                 PointWindow();
-                DataScripts.gamedata += CreateXMLString.IwoaGamblingData(trial, cardNumber.ToString(), rewardPoint.ToString(), lostPoint.ToString(), totalPoint.ToString(), (reactionTime * 1000).ToString(), maxTrial);
+                DataScripts.gamedata += CreateXMLString.IwoaGamblingData(trial, cardNumber.ToString(), rewardPoint.ToString(), lostPoint.ToString(), totalPoint.ToString(), (reactionTime * 1000).ToString("f0"), maxTrial);
                 reactionTime = 0f;
             }
         }

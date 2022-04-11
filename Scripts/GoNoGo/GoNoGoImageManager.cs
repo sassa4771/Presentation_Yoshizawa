@@ -107,7 +107,7 @@ namespace GoNoGo
 
                 StartCoroutine(noReactionTimer);
                 yield return null;
-                DataScripts.gamedata += CreateXMLString.GoNoGoData(i + 1, goNoGoNames[i], isReaction, (reactionTime * 1000).ToString(), goNoGoImages.Length);
+                DataScripts.gamedata += CreateXMLString.GoNoGoData(i + 1, goNoGoNames[i], isReaction, (reactionTime * 1000).ToString("f0"), goNoGoImages.Length);
                 i++;
                 yield return null;
             }
