@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
-    public GameObject BackScenePopUp;
+    public GameObject attentionPopUp;
 
     public void OnClickSceneChange(string SceneName)
     {
@@ -14,19 +14,11 @@ public class SceneChanger : MonoBehaviour
 
     public void OnClickSceneChangeAttention()   //For BackButton
     {
-        BackScenePopUp.SetActive(true);
+        attentionPopUp.SetActive(true);
     }
 
-    public void OnClickPopUpButton(string ButtonName)   //For PopupButton
+    public void OnClickPopUpCancelButton()   //For PopupButton
     {
-        if(ButtonName == "Back")
-        {
-            BackScenePopUp.SetActive(false);
-            SceneManager.LoadScene("Select");
-        }
-        else if(ButtonName == "Cancel")
-        {
-            BackScenePopUp.SetActive(false);
-        }
+        attentionPopUp.SetActive(false);
     }
 }
