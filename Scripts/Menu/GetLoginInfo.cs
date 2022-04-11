@@ -79,6 +79,7 @@ namespace Login
             DataScripts.StudentAge = age_num;
 
             sendDataToServer = new SendDataToServer(DataScripts.SchoolNumber, DataScripts.SchoolGrade.ToString(), DataScripts.SchoolClass.ToString(), DataScripts.PersonalNumber.ToString(), DataScripts.StudentGender.ToString(), DataScripts.StudentAge.ToString());
+            //SendIDTest();
         }
 
         public void ConversionID(int grade, int class_num, int gender)
@@ -143,6 +144,14 @@ namespace Login
             {
                 gender_str = null;
             }
+        }
+
+        void SendIDTest()
+        {
+            DataScripts.pattern = 4;
+            DataScripts.gamedata = "test";
+
+            sendDataToServer.SendData(DataScripts.pattern.ToString(), DataScripts.gamedata);
         }
     }
 }

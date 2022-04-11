@@ -16,12 +16,6 @@ namespace GoNoGo
         private int maxFirstInterval = 1500;
         public static bool trialStart = false;
 
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
-
         // Update is called once per frame
         void Update()
         {

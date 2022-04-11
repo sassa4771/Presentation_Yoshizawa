@@ -14,19 +14,13 @@ public class SendScreenManager : MonoBehaviour
     public static bool facialSendBool = false;
     SendDataToServer sendDataToServer;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
         if (sendBool)
         {
-            SendPatternAndGameData();
             sendBool = false;
+            SendPatternAndGameData();
         }
 
         if (facialSendBool)
@@ -34,7 +28,6 @@ public class SendScreenManager : MonoBehaviour
             FacialSendPatternAndGameData();
             facialSendBool = false;
         }
-
 
         if (rotate)
         {
@@ -79,17 +72,19 @@ public class SendScreenManager : MonoBehaviour
     }
 
     //サーバー連携するまで未実装　
-    void SendPatternAndGameData()
+    public void SendPatternAndGameData()
     {
-        //sendDataToServer.SendData(DataScripts.pattern.ToString(), DataScripts.gamedata, SwitchScreen);
-        Invoke(nameof(SwitchScreen), 5.0f);
+        sendDataToServer = new SendDataToServer(DataScripts.SchoolNumber, DataScripts.SchoolGrade.ToString(), DataScripts.SchoolClass.ToString(), DataScripts.PersonalNumber.ToString(), DataScripts.StudentGender.ToString(), DataScripts.StudentGender.ToString());
+        sendDataToServer.SendData(DataScripts.pattern.ToString(), DataScripts.gamedata, SwitchScreen);
+        //Invoke(nameof(SwitchScreen), 5.0f);
         DataScripts.gamedata = null;
     }
 
-    void FacialSendPatternAndGameData()
+    public void FacialSendPatternAndGameData()
     {
-        //sendDataToServer.SendData(DataScripts.pattern.ToString(), DataScripts.gamedata, FacialSwitchScreen);
-        Invoke(nameof(FacialSwitchScreen), 5.0f);
+        sendDataToServer = new SendDataToServer(DataScripts.SchoolNumber, DataScripts.SchoolGrade.ToString(), DataScripts.SchoolClass.ToString(), DataScripts.PersonalNumber.ToString(), DataScripts.StudentGender.ToString(), DataScripts.StudentGender.ToString());
+        sendDataToServer.SendData(DataScripts.pattern.ToString(), DataScripts.gamedata, FacialSwitchScreen);
+        //Invoke(nameof(FacialSwitchScreen), 5.0f);
         DataScripts.gamedata = null;
     }
 
