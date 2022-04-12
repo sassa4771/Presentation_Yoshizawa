@@ -5,7 +5,6 @@ using UnityEngine;
 public class PopUpOpen : MonoBehaviour
 {
     public GameObject PopUp;
-    private Animator animator;
 
     void Start()
     {
@@ -14,7 +13,13 @@ public class PopUpOpen : MonoBehaviour
 
     public void OnClickPopUpOpen()
     {
-        //animator.SetBool("Active", true);
-        PopUp.SetActive(true);
+        if (Application.internetReachability == NetworkReachability.NotReachable)
+        {
+            Debug.LogError("Not connected to the network");
+        }
+        else
+        {
+            PopUp.SetActive(true);
+        }
     }
 }
