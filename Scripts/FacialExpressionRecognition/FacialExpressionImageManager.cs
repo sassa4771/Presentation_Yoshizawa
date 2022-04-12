@@ -38,6 +38,8 @@ namespace FacialExpressionRecognition
 
         SendDataToServer sendDataToServer;
 
+        [SerializeField] GameObject antiTapPanel;
+
         void Start()
         {
             CreateLRArray();
@@ -212,6 +214,7 @@ namespace FacialExpressionRecognition
 
         private IEnumerator RandomTimer()
         {
+            antiTapPanel.SetActive(true);
             StopCoroutine(coroutine);
 
             StopCoroutine(noReactionTimer);
@@ -222,6 +225,7 @@ namespace FacialExpressionRecognition
             yield return new WaitForSeconds(rdmTime * 0.001f);
 
             StartCoroutine(coroutine);
+            antiTapPanel.SetActive(false);
         }
 
         private IEnumerator NoReactionTimer()

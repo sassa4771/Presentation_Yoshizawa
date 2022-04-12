@@ -45,6 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Send: {fileID: 7252542278844191722}
   End: {fileID: 0}
+  facialExplain: {fileID: 0}
   sendMark: {fileID: 7569337445321272765}
 --- !u!1 &7252542278844191722
 GameObject:
@@ -373,6 +374,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4924498548167599223, guid: 387db8fc6b7584fa7b8982501d18c1de,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 22.699951
       objectReference: {fileID: 0}
     - target: {fileID: 5251307516644671049, guid: 387db8fc6b7584fa7b8982501d18c1de,
         type: 3}

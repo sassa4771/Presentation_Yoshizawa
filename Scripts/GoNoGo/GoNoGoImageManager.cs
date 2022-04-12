@@ -29,6 +29,8 @@ namespace GoNoGo
 
         SendDataToServer sendDataToServer;
 
+        [SerializeField] GameObject antiTapPanel;
+
         void Update()
         {
             TrialStart();
@@ -119,6 +121,7 @@ namespace GoNoGo
 
         private IEnumerator ReactionTimer()
         {
+            antiTapPanel.SetActive(true);
             StopCoroutine(randomDisplayImage);
             StopCoroutine(noReactionTimer);
             ResetNoReactionTimer();
@@ -128,6 +131,7 @@ namespace GoNoGo
             isReaction = "yes";
             Debug.Log(isReaction);
             StartCoroutine(randomDisplayImage);
+            antiTapPanel.SetActive(false);
         }
 
         private IEnumerator NoReactionTimer()
