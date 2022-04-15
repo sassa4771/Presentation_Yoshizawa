@@ -73,7 +73,7 @@ namespace IowaGambling
         {
             rewardPoint = int.Parse(PointDataBase.rewardDatas[trialNum - 1][cardNum - 1]);
             lostPoint = int.Parse(PointDataBase.lostDatas[trialNum - 1][cardNum - 1]);
-            totalPoint += rewardPoint;
+            totalPoint += rewardPoint + lostPoint;  //修正
         }
 
         private void FixedUpdateTimer()
