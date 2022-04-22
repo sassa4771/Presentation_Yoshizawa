@@ -9,10 +9,6 @@ namespace Login
 {
     public class GetLoginInfo : MonoBehaviour
     {
-        public Text popUpMessage;
-        public GameObject cautionPopUp;
-        public Text cautionText;
-
         public static int school_num;
         public static int grade_num;
         public static int class_num;
