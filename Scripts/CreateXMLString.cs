@@ -19,7 +19,7 @@ public class CreateXMLString : MonoBehaviour
                 "\t" + "<face>" + face + "</face>" + "\n" +
                 "\t" + "<lr>" + lr + "</lr>" + "\n" +
                 "\t" + "<correct>" + correct + "</correct>" + "\n" +
-                "\t" + "<reacttime>" + reactionTime + "</reacttime>" + "\n";
+                "\t" + "<time>" + reactionTime + "</time>" + "\n";
             return gamedata;
         }
         else if(trial == maxTrial)
@@ -29,7 +29,7 @@ public class CreateXMLString : MonoBehaviour
                 "\t" + "<face>" + face + "</face>" + "\n" +
                 "\t" + "<lr>" + lr + "</lr>" + "\n" +
                 "\t" + "<correct>" + correct + "</correct>" + "\n" +
-                "\t" + "<reacttime>" + reactionTime + "</reacttime>" + "\n" +
+                "\t" + "<time>" + reactionTime + "</time>" + "\n" +
                 "</data>";
             return gamedata;
         }
@@ -40,7 +40,7 @@ public class CreateXMLString : MonoBehaviour
                 "\t" + "<face>" + face + "</face>" + "\n" +
                 "\t" + "<lr>" + lr + "</lr>" + "\n" +
                 "\t" + "<correct>" + correct + "</correct>" + "\n" +
-                "\t" + "<reacttime>" + reactionTime + "</reacttime>" + "\n";
+                "\t" + "<time>" + reactionTime + "</time>" + "\n";
             return gamedata;
         }
     }
@@ -58,7 +58,7 @@ public class CreateXMLString : MonoBehaviour
                 "\t" + "<trial>" + trial.ToString() + "</trial>" + "\n" +
                 "\t" + "<type>" + type + "</type>" + "\n" +
                 "\t" + "<reaction>" + reaction + "</reaction>" + "\n" +
-                "\t" + "<reacttime>" + reactionTime + "</reacttime>" + "\n";
+                "\t" + "<time>" + reactionTime + "</time>" + "\n";
             return gamedata;
         }
         else if (trial == maxTrial)
@@ -67,7 +67,7 @@ public class CreateXMLString : MonoBehaviour
                 "\t" + "<trial>" + trial.ToString() + "</trial>" + "\n" +
                 "\t" + "<type>" + type + "</type>" + "\n" +
                 "\t" + "<reaction>" + reaction + "</reaction>" + "\n" +
-                "\t" + "<reacttime>" + reactionTime + "</reacttime>" + "\n" +
+                "\t" + "<time>" + reactionTime + "</time>" + "\n" +
                 "</data>";
             return gamedata;
         }
@@ -77,7 +77,7 @@ public class CreateXMLString : MonoBehaviour
                 "\t" + "<trial>" + trial.ToString() + "</trial>" + "\n" +
                 "\t" + "<type>" + type + "</type>" + "\n" +
                 "\t" + "<reaction>" + reaction + "</reaction>" + "\n" +
-                "\t" + "<reacttime>" + reactionTime + "</reacttime>" + "\n";
+                "\t" + "<time>" + reactionTime + "</time>" + "\n";
             return gamedata;
         }
     }
@@ -97,7 +97,7 @@ public class CreateXMLString : MonoBehaviour
                 "\t" + "<reward>" + reward + "</reward>" + "\n" +
                 "\t" + "<lost>" + lost + "</lost>" + "\n" +
                 //"\t" + "<total>" + total + "</total>" + "\n" +
-                "\t" + "<reacttime>" + reactionTime + "</reacttime>" + "\n";
+                "\t" + "<time>" + reactionTime + "</time>" + "\n";
             return gamedata;
         }
         else if (trial == maxTrial)
@@ -108,7 +108,7 @@ public class CreateXMLString : MonoBehaviour
                 "\t" + "<reward>" + reward + "</reward>" + "\n" +
                 "\t" + "<lost>" + lost + "</lost>" + "\n" +
                 //"\t" + "<total>" + total + "</total>" + "\n" +
-                "\t" + "<reacttime>" + reactionTime + "</reacttime>" + "\n" +
+                "\t" + "<time>" + reactionTime + "</time>" + "\n" +
             "</data>";
             return gamedata;
         }
@@ -120,7 +120,7 @@ public class CreateXMLString : MonoBehaviour
                 "\t" + "<reward>" + reward + "</reward>" + "\n" +
                 "\t" + "<lost>" + lost + "</lost>" + "\n" +
                 //"\t" + "<total>" + total + "</total>" + "\n" +
-                "\t" + "<reacttime>" + reactionTime + "</reacttime>" + "\n";
+                "\t" + "<time>" + reactionTime + "</time>" + "\n";
             return gamedata;
         }
     }
