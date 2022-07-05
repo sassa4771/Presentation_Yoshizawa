@@ -21,7 +21,7 @@ namespace Title
 
         public void TitleClose()
         {
-            SceneManager.LoadScene("Login");
+            SceneManager.LoadScene("AccountCheck");
         }
     }
 }

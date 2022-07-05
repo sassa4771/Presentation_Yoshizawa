@@ -40,6 +40,15 @@ namespace Login
             DataScripts.StudentAge = age_num;
 
             sendDataToServer = new SendDataToServer(DataScripts.SchoolNumber, DataScripts.SchoolGrade.ToString(), DataScripts.SchoolClass.ToString(), DataScripts.PersonalNumber.ToString(), DataScripts.StudentGender.ToString(), DataScripts.StudentAge.ToString());
+
+            Debug.Log("---Check Start---");
+            Debug.Log(DataScripts.SchoolNumber);
+            Debug.Log(DataScripts.SchoolGrade.ToString());
+            Debug.Log(DataScripts.SchoolClass.ToString());
+            Debug.Log(DataScripts.PersonalNumber.ToString());
+            Debug.Log(DataScripts.StudentGender.ToString());
+            Debug.Log(DataScripts.StudentAge.ToString());
+            Debug.Log("---Check Finish---");
         }
 
         /// <summary>
