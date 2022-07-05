@@ -11,6 +11,7 @@ namespace GoNoGo
         [SerializeField] GameObject Task;
         [SerializeField] GameObject EndText;
         [SerializeField] GameObject Send;
+        [SerializeField] GameObject End;
         private int startTextTime = 2000;
         private int minFirstInterval = 1000;
         private int maxFirstInterval = 1500;
@@ -44,6 +45,7 @@ namespace GoNoGo
             int rdmInterval = Random.Range(minFirstInterval, maxFirstInterval);
             yield return new WaitForSeconds(rdmInterval * 0.001f);
             trialStart = true;
+            DataScripts.gamedata = null;    //開始前にgamedataの中身を消去
         }
 
         private IEnumerator EndTextTimer()
@@ -52,8 +54,15 @@ namespace GoNoGo
             EndText.SetActive(true);
             yield return new WaitForSeconds(2000 * 0.001f);
             EndText.SetActive(false);
-            Send.SetActive(true);   //
-            SendScreenManager.StartSendScreen();    //
+            if (AccountCheck.registered)
+            {
+                Send.SetActive(true);   //
+                SendScreenManager.StartSendScreen();    //
+            }
+            else
+            {
+                End.SetActive(true);
+            }
         }
     }
 }

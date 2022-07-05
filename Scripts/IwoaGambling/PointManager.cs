@@ -39,6 +39,8 @@ namespace IowaGambling
             card2 = 0;
             card3 = 0;
             card4 = 0;
+
+            DataScripts.gamedata = null;    //開始前にgamedataの中身を消去
         }
 
         private void FixedUpdate()

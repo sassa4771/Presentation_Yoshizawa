@@ -19,6 +19,13 @@ public class RevealUserInfo : MonoBehaviour
         //if (DataScripts.SchoolGrade > 6) RevealSchoolGrade = (DataScripts.SchoolGrade - 6).ToString();
 
         //this.GetComponent<Text>().text = "学校番号：" + GradeNumber + DataScripts.SchoolNumber + ", 学年：" + RevealSchoolGrade + ", 学級：" + DataScripts.SchoolClass + ", 出席番号：" + DataScripts.PersonalNumber;
-        this.GetComponent<Text>().text = "学校番号：" + DataScripts.SchoolNumber + ", 学年：" + DataScripts.SchoolGrade + ", 学級：" + DataScripts.SchoolClass + ", 出席番号：" + DataScripts.PersonalNumber;
+        if (AccountCheck.registered)
+        {
+            this.GetComponent<Text>().text = "学校番号：" + DataScripts.SchoolNumber + ", 学年：" + DataScripts.SchoolGrade + ", 学級：" + DataScripts.SchoolClass + ", 出席番号：" + DataScripts.PersonalNumber;
+        }
+        else
+        {
+            this.GetComponent<Text>().text = null;
+        }
     }
 }

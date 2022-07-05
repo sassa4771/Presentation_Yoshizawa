@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class AccountCheck : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static bool registered = true;
+
+    public void OnClickRegistered()
     {
-        
+        registered = true;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnClickNoregistration()
     {
-        
+        registered = false;
     }
 }

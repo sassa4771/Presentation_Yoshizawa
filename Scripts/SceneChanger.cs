@@ -21,4 +21,17 @@ public class SceneChanger : MonoBehaviour
     {
         attentionPopUp.SetActive(false);
     }
+
+    public void OnClickSceneBack()
+    {
+        if (AccountCheck.registered)
+        {
+            SceneManager.LoadScene("Login");
+
+        }
+        else
+        {
+            SceneManager.LoadScene("AccountCheck");
+        }
+    }
 }

@@ -13,6 +13,7 @@ namespace FacialExpressionRecognition
         public GameObject Task;
         public GameObject Explain;
         public GameObject Send;
+        public GameObject End;
         public GameObject backButton;
         [SerializeField] private Text FacialExpressionText;
         private int ProgressCounter;
@@ -32,6 +33,7 @@ namespace FacialExpressionRecognition
             Shuffle.ShuffleImage(facialExpressionImageHolder.Disgust);
             Shuffle.ShuffleImage(facialExpressionImageHolder.Fear);
             Shuffle.ShuffleImage(facialExpressionImageHolder.Anger);
+            DataScripts.gamedata = null;    //開始前にgamedataの中身を消去
         }
 
         // Update is called once per frame
@@ -44,14 +46,28 @@ namespace FacialExpressionRecognition
                 {
                     backButton.SetActive(false);
                     Task.SetActive(false);
-                    Send.SetActive(true);
-                    SendScreenManager.FacialStartSendScreen();
+                    if (AccountCheck.registered)
+                    {
+                        Send.SetActive(true);
+                        SendScreenManager.FacialStartSendScreen();
+                    }
+                    else
+                    {
+                        Explain.SetActive(true);
+                    }
                 }
                 else
                 {
                     Task.SetActive(false);
-                    Send.SetActive(true);
-                    SendScreenManager.StartSendScreen();
+                    if (AccountCheck.registered)
+                    {
+                        Send.SetActive(true);   //
+                        SendScreenManager.StartSendScreen();    //
+                    }
+                    else
+                    {
+                        End.SetActive(true);
+                    }
                 }
                 FacialExpressionImageManager.EndBool = false;
             }

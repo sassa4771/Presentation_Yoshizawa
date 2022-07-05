@@ -10,6 +10,7 @@ namespace IowaGambling
     {
         [SerializeField] GameObject Task;
         [SerializeField] GameObject Send;
+        [SerializeField] GameObject End;
         SendDataToServer sendDataToServer;
 
         // Update is called once per frame
@@ -18,10 +19,17 @@ namespace IowaGambling
             if (PointPopUpManager.endBool)
             {
                 Task.SetActive(false);
-                Send.SetActive(true);
                 DataScripts.pattern = 3;
                 Debug.Log(DataScripts.gamedata);
-                SendScreenManager.StartSendScreen();    //
+                if (AccountCheck.registered)
+                {
+                    Send.SetActive(true);   //
+                    SendScreenManager.StartSendScreen();    //
+                }
+                else
+                {
+                    End.SetActive(true);
+                }
                 PointPopUpManager.endBool = false;
             }
         }
